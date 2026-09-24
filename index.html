@@ -1252,6 +1252,7 @@ main section[id] {
 /* Las secciones se separan por tonalidad, no por lineas */
 .services,
 .brochures,
+.videos,
 .contact {
   background: var(--ink);
 }
@@ -1268,6 +1269,7 @@ main section[id] {
 .services::before,
 .why-us::before,
 .gallery::before,
+.videos::before,
 .contact::before {
   content: "";
   position: absolute;
@@ -1286,7 +1288,8 @@ main section[id] {
 }
 
 .services > .container,
-.gallery > .container {
+.gallery > .container,
+.videos > .container {
   position: relative;
   z-index: 1;
 }
@@ -1878,6 +1881,47 @@ main section[id] {
   color: var(--paper-muted);
   font-size: 0.96rem;
   max-width: 48ch;
+}
+
+/* =========================================================
+   VIDEOS
+   ========================================================= */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.2vw, 16px);
+}
+
+.video-item {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--photo-line-2);
+  border-radius: var(--radius);
+  background: var(--photo-panel);
+}
+
+.video-item video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background: #000;
+}
+
+.video-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 18px 14px 12px;
+  background: linear-gradient(180deg, transparent, rgba(5, 5, 6, 0.85));
+  color: var(--photo-text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  pointer-events: none;
 }
 
 /* =========================================================
@@ -2790,6 +2834,12 @@ main section[id] {
     aspect-ratio: 1 / 1;
   }
 
+  .video-grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+    margin-inline: auto;
+  }
+
   .contact-list li {
     grid-template-columns: 38px 1fr;
     gap: 14px;
@@ -3184,7 +3234,8 @@ main section[id] {
           <li><a href="#inicio" class="nav-link"><span class="nav-link-index">01</span><span class="nav-link-text">Inicio</span></a></li>
           <li><a href="#servicios" class="nav-link"><span class="nav-link-index">02</span><span class="nav-link-text">Servicios</span></a></li>
           <li><a href="#galeria" class="nav-link"><span class="nav-link-index">03</span><span class="nav-link-text">Galeria</span></a></li>
-          <li><a href="#contacto" class="nav-link"><span class="nav-link-index">04</span><span class="nav-link-text">Contacto</span></a></li>
+          <li><a href="#videos" class="nav-link"><span class="nav-link-index">04</span><span class="nav-link-text">Videos</span></a></li>
+          <li><a href="#contacto" class="nav-link"><span class="nav-link-index">05</span><span class="nav-link-text">Contacto</span></a></li>
         </ul>
         <button type="button" class="btn btn-primary btn-nav" data-wa-trigger><span>Pedir por WhatsApp</span></button>
       </nav>
@@ -3204,7 +3255,7 @@ main section[id] {
       <canvas id="particles-canvas" aria-hidden="true"></canvas>
       <div class="hero-rules" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
       <div class="container hero-inner">
-        <p class="eyebrow hero-eyebrow" data-hero="1">Servicio en Guadalajara, Jalisco</p>
+        <p class="eyebrow hero-eyebrow" data-hero="1">Servicio en todo Jalisco</p>
         <h1 class="hero-title">
           <span class="line" data-hero="2"><span class="line-inner gradient-text">Tu cortina vuelve</span></span>
           <span class="line" data-hero="3"><span class="line-inner">a funcionar hoy</span></span>
@@ -3213,7 +3264,7 @@ main section[id] {
           <span class="hero-typewriter-label">Trabajamos con:</span>
           <span class="typewriter-word" id="typewriter"></span><span class="typewriter-cursor" aria-hidden="true"></span>
         </p>
-        <p class="hero-desc" data-hero="5">Fabricamos, reparamos y damos mantenimiento a cortinas metalicas en Guadalajara. Para que tu negocio no pierda ni un dia de trabajo por una cortina que no abre o no cierra.</p>
+        <p class="hero-desc" data-hero="5">Fabricamos, reparamos y damos mantenimiento a cortinas metalicas en Guadalajara y en todo Jalisco. Para que tu negocio no pierda ni un dia de trabajo por una cortina que no abre o no cierra.</p>
         <div class="hero-cta" data-hero="6">
           <button type="button" class="btn btn-primary btn-lg" data-wa-trigger>
             <svg viewBox="0 0 24 24" class="btn-icon" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.8a8.1 8.1 0 0 1 5.75 2.38 8.07 8.07 0 0 1 2.38 5.73c0 4.48-3.65 8.12-8.14 8.12a8.1 8.1 0 0 1-4.13-1.13l-.3-.17-3.12.82.83-3.04-.19-.31a8.06 8.06 0 0 1-1.24-4.31c0-4.48 3.65-8.09 8.16-8.09m-4.48 4.19c-.15 0-.4.06-.6.28-.21.23-.8.77-.8 1.89s.82 2.2.93 2.35c.11.15 1.6 2.5 3.95 3.44 1.94.79 2.35.63 2.77.6.42-.04 1.36-.55 1.55-1.09.19-.53.19-.99.13-1.09-.06-.09-.21-.15-.44-.26-.23-.12-1.36-.67-1.57-.75-.21-.08-.36-.12-.52.11-.15.23-.6.75-.73.9-.13.15-.27.17-.5.06-.23-.12-.96-.35-1.83-1.13-.68-.6-1.13-1.35-1.27-1.58-.13-.23-.01-.35.1-.47.11-.11.23-.27.35-.4.11-.14.15-.24.23-.4.08-.15.04-.3-.02-.42-.06-.11-.52-1.28-.72-1.74-.19-.46-.38-.4-.52-.4Z"/></svg>
@@ -3227,11 +3278,11 @@ main section[id] {
         <div class="hero-meta" data-hero="7">
           <div class="hero-meta-item">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
-            <span>Guadalajara, Jalisco</span>
+            <span>Todo Jalisco</span>
           </div>
           <div class="hero-meta-item">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm.9-13H11v6l5.2 3.1.9-1.5-4.2-2.5Z"/></svg>
-            <span>Lunes a sabado, 9:00 a 19:00</span>
+            <span>Atencion las 24 horas, los 7 dias</span>
           </div>
           <div class="hero-meta-item hero-meta-item--social">
             <span class="hero-social-label">Siguenos en redes</span>
@@ -3270,13 +3321,13 @@ main section[id] {
                 <span class="tag">Fabricacion</span>
               </div>
               <h3 class="service-title" data-reveal>Cortinas metalicas hechas a medida</h3>
-              <p class="service-desc" data-reveal>Fabricamos cortinas metalicas para locales, bodegas y negocios de cualquier tamano. Cada cortina se hace segun las medidas exactas del vano, con materiales resistentes para uso diario.</p>
+              <p class="service-desc" data-reveal>Fabricamos cortinas metalicas para locales, bodegas y negocios de cualquier tamano. Cada cortina se hace a la medida de tu preferencia o utilidad, con materiales resistentes para uso diario.</p>
               <ul class="service-list">
-                <li data-reveal>Fabricacion a la medida del vano</li>
+                <li data-reveal>Fabricacion a la medida de tu preferencia o utilidad</li>
                 <li data-reveal>Para locales, bodegas y naves</li>
                 <li data-reveal>Instalacion incluida en el servicio</li>
                 <li data-reveal>Materiales para uso comercial intensivo</li>
-                <li data-reveal>Trabajamos en Guadalajara y zona metro</li>
+                <li data-reveal>Trabajamos en Guadalajara y en todo Jalisco</li>
               </ul>
             </div>
           </article>
@@ -3297,7 +3348,7 @@ main section[id] {
                 <li data-reveal>Sustitucion de laminas danadas</li>
                 <li data-reveal>Atencion a cortinas atascadas</li>
                 <li data-reveal>Diagnostico antes de cualquier trabajo</li>
-                <li data-reveal>Servicio en Guadalajara, Jalisco</li>
+                <li data-reveal>Servicio en todo Jalisco</li>
               </ul>
             </div>
           </article>
@@ -3488,6 +3539,31 @@ main section[id] {
         </div>
       </div>
     </section>
+<section class="videos" id="videos">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head-main">
+            <p class="eyebrow" data-reveal>Trabajo real</p>
+            <h2 class="section-title" data-reveal>Mira <span class="text-gold">como trabajamos</span></h2>
+          </div>
+          <p class="section-desc" data-reveal>Videos grabados durante nuestros propios servicios: cambio de piezas, acabados y mas, sin actuados.</p>
+        </div>
+        <div class="video-grid" data-reveal-group>
+          <figure class="video-item" data-reveal="media">
+            <video src="videos/mavi-presentacion.mp4" poster="img/video-presentacion-poster.jpg" controls playsinline preload="metadata"></video>
+            <figcaption class="video-caption">MAVI Reparacion de Cortinas Metalicas</figcaption>
+          </figure>
+          <figure class="video-item" data-reveal="media">
+            <video src="videos/cambio-de-resortes.mp4" poster="img/video-resortes-poster.jpg" controls playsinline preload="metadata"></video>
+            <figcaption class="video-caption">Cambio de resortes en cortina metalica</figcaption>
+          </figure>
+          <figure class="video-item" data-reveal="media">
+            <video src="videos/detalle-de-acabado.mp4" poster="img/video-detalle-poster.jpg" controls playsinline preload="metadata"></video>
+            <figcaption class="video-caption">Detalle de acabado e instalacion</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
 <section class="contact has-bg" id="contacto">
       <div class="section-bg" style="background-image:url('img/10.jpg');" aria-hidden="true"></div>
       <div class="section-bg-veil" aria-hidden="true"></div>
@@ -3495,14 +3571,14 @@ main section[id] {
         <div class="contact-info">
           <p class="eyebrow" data-reveal>Contacto</p>
           <h2 class="section-title" data-reveal>Hablemos y <span class="text-gold">resolvemos hoy</span></h2>
-          <p class="section-desc" data-reveal>Si tu cortina no abre, no cierra o necesitas una nueva, llamanos o escribe. Atendemos en Guadalajara y zona metropolitana sin demoras.</p>
+          <p class="section-desc" data-reveal>Si tu cortina no abre, no cierra o necesitas una nueva, llamanos o escribe. Atendemos en Guadalajara y en todo Jalisco sin demoras.</p>
           <ul class="contact-list" data-reveal-group>
             <li data-reveal>
               <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg></span>
               <span class="contact-text">
                 <span class="contact-label">Ubicacion</span>
-                <span>Av. pintura #217, Guadalajara, Mexico, 44990</span>
-                <a href="https://www.google.com/maps/search/?api=1&query=Av.%20pintura%20%23217%2C%20Guadalajara%2C%20Mexico%2C%2044990" target="_blank" rel="noopener" class="map-link">Ver en Google Maps</a>
+                <span>Av. Pintura #217, Col. Miravalle, Guadalajara, Jalisco, C.P. 44990</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Av.%20Pintura%20%23217%2C%20Colonia%20Miravalle%2C%20Guadalajara%2C%20Jalisco%2C%20C.P.%2044990" target="_blank" rel="noopener" class="map-link">Ver en Google Maps</a>
               </span>
             </li>
             <li data-reveal>
@@ -3516,7 +3592,7 @@ main section[id] {
               <span class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm.9-13H11v6l5.2 3.1.9-1.5-4.2-2.5Z"/></svg></span>
               <span class="contact-text">
                 <span class="contact-label">Horario</span>
-                <span>Lunes a viernes 8:00 am - 6:00 pm, sabados 9:00 am - 2:00 pm</span>
+                <span>Las 24 horas, los 7 dias de la semana</span>
               </span>
             </li>
           </ul>
@@ -3533,7 +3609,7 @@ main section[id] {
           </div>
         </div>
         <div class="contact-map" data-reveal="media">
-          <iframe title="Av. pintura #217, Guadalajara, Mexico, 44990" src="https://www.google.com/maps?q=Av.%20pintura%20%23217%2C%20Guadalajara%2C%20Mexico%2C%2044990&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe title="Av. Pintura #217, Colonia Miravalle, Guadalajara, Jalisco, C.P. 44990" src="https://www.google.com/maps?q=Av.%20Pintura%20%23217%2C%20Colonia%20Miravalle%2C%20Guadalajara%2C%20Jalisco%2C%20C.P.%2044990&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </section>
@@ -3548,7 +3624,7 @@ main section[id] {
           <span class="brand-mark"><img src="logo.png" alt="MAVI - REPARACION DE CORTINAS METALICAS" class="brand-logo"></span>
           <span class="brand-text"><span class="brand-name">MAVI - REPARACION DE CORTINAS METALICAS</span><span class="brand-tagline">Cortinas metalicas que no te fallan</span></span>
         </a>
-        <p>MAVI Reparacion de Cortinas Metalicas. Fabricacion, reparacion y mantenimiento en Guadalajara, Jalisco. Tu negocio no pierde un dia de trabajo.</p>
+        <p>MAVI Reparacion de Cortinas Metalicas. Fabricacion, reparacion y mantenimiento en Guadalajara y en todo Jalisco. Tu negocio no pierde un dia de trabajo.</p>
       </div>
       <div class="footer-col">
         <h4>Menu</h4>
@@ -3556,15 +3632,16 @@ main section[id] {
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#videos">Videos</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Datos de contacto</h4>
         <ul>
-          <li>Av. pintura #217, Guadalajara, Mexico, 44990</li>
+          <li>Av. Pintura #217, Col. Miravalle, Guadalajara, Jalisco, C.P. 44990</li>
           <li><a href="https://wa.me/3316088270" target="_blank" rel="noopener">331 608 8270</a></li>
-          <li>Lunes a viernes 8:00 am - 6:00 pm, sabados 9:00 am - 2:00 pm</li>
+          <li>Las 24 horas, los 7 dias de la semana</li>
         </ul>
       </div>
     </div>
